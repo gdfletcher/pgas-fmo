@@ -6,6 +6,7 @@ In high performance computing (HPC), proxy applications (“proxy apps”) are s
 This proxy app models the Fragment Molecular Orbital (FMO) method in Quantum Chemistry. 
 FMO can compute very large systems with thousands of atoms using ab initio wave functions by first subdividing a system into smaller parts or fragments. 
 The total energy is then expanded as a series in the fragments starting with the monomers, then the dimers, and so on. 
+This approach derives its efficiency from the neglect of inter-fragment exchange (‘nearsightedness’ principle) – an approximation managed by careful extension of the series and other model factors. 
 A key strategy in the HPC implementation of FMO is the use of a parallel global address space (PGAS) scheme to distribute and access the data on the fragments over the compute nodes. 
 Thus, to the end-user this proxy provides insights into both the FMO method and the implementation of PGAS concepts. 
 Real FMO applications are highly complex and the present app aims to be the simplest possible representation for the purposes of performance analysis.
