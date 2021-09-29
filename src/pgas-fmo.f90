@@ -1,3 +1,10 @@
+! Copyright © 2021, UChicago Argonne, LLC, OPEN SOURCE LICENSE
+! See (root dir/)LICENSE.TXT 
+
+!  PGAS-FMO Proxy Application 
+!  Written by Graham D. Fletcher, Computational Science Division, 
+!  Argonne National Laboratory 
+
 !  Initial version (0.0) 
 !  Models 
 !  - Fragments are He atoms
