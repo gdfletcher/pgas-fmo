@@ -13,6 +13,6 @@ pgas-fmo.x: src/$(SRC)
 	$(FC) $(FLAGS) -o bin/pgas-fmo.x src/$(SRC) 
 
 clean:
-	rm *.o; rm *.mod
+	rm *.mod
 
 
