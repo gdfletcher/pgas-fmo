@@ -1,7 +1,7 @@
 #  PGAS-FMO proxy app Makefile 
 
- FC=mpifort
-#FC=mpif90
+ FC=mpif90
+#FC=mpifort
  FLAGS=-O3 -w
 
  SRC=pgas-fmo.f90
