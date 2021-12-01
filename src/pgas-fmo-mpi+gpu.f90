@@ -220,6 +220,7 @@
 
 
 
+!OMP DECLARE TARGET 
  real(8)    function eri( ifrag,jfrag, ib,jb,kb,lb, xpnt, geom )
  use        pgasfmo_params 
  implicit   none 
@@ -259,6 +260,7 @@
  end if 
  end if  
  end function eri 
+!OMP END DECLARE TARGET 
 
 
 
@@ -296,6 +298,7 @@
 
 
 
+!OMP DECLARE TARGET 
  real(8)    function ovl( jfrag, ib,jb, xpnt, geom )
  use        pgasfmo_params 
  implicit   none 
@@ -312,6 +315,7 @@
      + ( geom( 2, i ) - geom( 2, j ) )**2   &
      + ( geom( 3, i ) - geom( 3, j ) )**2  )  )*( aij**1.5d0 )  
  end function ovl
+!OMP END DECLARE TARGET 
 
 
 
