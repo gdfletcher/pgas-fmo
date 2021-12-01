@@ -1,17 +1,16 @@
 #  PGAS-FMO proxy app Makefile 
 
- FC=ftn         # theta
-#FC=mpif90      # cooley
-#FC=mpif90      # summit
+ FC=mpif90
+#FC=mpifort
  FLAGS=-O3 -w
+
+ SRC=pgas-fmo.f90
+#SRC=pgas-fmo.0.0.f90
 
 all: pgas-fmo.x  
 
-#pgas-fmo.f90: pgas-fmo.0.0.f90  
-#	cp pgas-fmo.0.0.f90  pgas-fmo.f90 
-
-pgas-fmo.x: src/pgas-fmo.f90  
-	$(FC) $(FLAGS) -o bin/pgas-fmo.x src/pgas-fmo.f90 
+pgas-fmo.x: src/$(SRC)  
+	$(FC) $(FLAGS) -o bin/pgas-fmo.x src/$(SRC) 
 
 clean:
 	rm *.o; rm *.mod
