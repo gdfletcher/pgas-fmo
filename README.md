@@ -117,7 +117,7 @@ Please note that the proxy codes have NOT been hand-optimized for any particular
 
 #### Regression Tests
 
-|no. He atoms | 2-el. E/AU to 6 places | Input |  
+| no. He atoms | 2-el. E/AU to 6 places | Input |  
 |  :-:        |     :-:                | File  |  
 |   1 |    3.772532 |  he  |  
 |   2 |   10.270951 |  he2 |  
