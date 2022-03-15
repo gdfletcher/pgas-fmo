@@ -128,6 +128,8 @@ Please note that the proxy codes have NOT been hand-optimized for any particular
 | Atoms       | Energy  |  File  |
 |  :-:        |     :-: |  :-:   |
 | 1     | 3.772532  |  he  |
+| 2     | 10.270951  |  he2  |
+| 4     | 29.407903  |  he4  |
  
 
 
