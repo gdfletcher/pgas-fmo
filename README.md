@@ -115,15 +115,7 @@ Please note that the proxy codes have NOT been hand-optimized for any particular
 <img src="./docs/pgas-fmo-mpiThetaKNL.png" height="350"/> 
 
 
-## Regression Tests - why does this not work?
-
-| Number of atoms | 2-el E/AU to 6 places | Input |  
-|  :-:        |     :-:                | File  |  
-|   1 |    3.772532 |  he  |  
-|   2 |   10.270951 |  he2 |  
-|   4 |   29.407903 |  he4 |  
-
-## Build instructions - why does this work?
+## Regression Tests 
 
 | Atoms       | Energy  |  File  |
 |  :-:        |     :-: |  :-:   |
