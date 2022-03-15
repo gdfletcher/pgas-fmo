@@ -125,9 +125,9 @@ Please note that the proxy codes have NOT been hand-optimized for any particular
 
 ## Build instructions - why does this work?
 
-| Atoms                       | Energy  | 
-|  :-:        |     :-:                |
-| 1     | 3.772532  | 
+| Atoms       | Energy  |  File  |
+|  :-:        |     :-: |  :-:   |
+| 1     | 3.772532  |  he  |
  
 
 
