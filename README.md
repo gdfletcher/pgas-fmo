@@ -114,8 +114,6 @@ Please note that the proxy codes have NOT been hand-optimized for any particular
 
 <img src="./docs/pgas-fmo-mpiThetaKNL.png" height="350"/> 
 
-<img src="./docs/pgas-fmo-mpiThetaKNL.pdf" height="350"/> 
-
 
 ## Regression Tests 
 
