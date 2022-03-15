@@ -125,9 +125,9 @@ Please note that the proxy codes have NOT been hand-optimized for any particular
 
 ## Build instructions - why does this work?
 
-| Code                       | Dependencies  | 
+| Atoms                       | Energy  | 
 |  :-:        |     :-:                |
-| pgas-fmo.f90     | Fortran 90+ compiler, MPI library  | 
+| 1     | 3.772532  | 
  
 
 
