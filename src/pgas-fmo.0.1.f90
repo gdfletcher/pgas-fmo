@@ -1,4 +1,4 @@
-! Copyright © 2021, UChicago Argonne, LLC, OPEN SOURCE LICENSE
+! Copyright © 2022, UChicago Argonne, LLC, OPEN SOURCE LICENSE
 ! See (root dir/)LICENSE.TXT 
 
 !  PGAS-FMO Proxy Application 
@@ -157,6 +157,8 @@
        +       ( geom( 3, jfrag ) - geom( 3, myfrag ) )**2  )
 
 !  begin compute kernel 
+!  an obvious improvement is to replicate the i,j loops inside the rsep clauses 
+!  and move the GETs, below, outside of those loops 
   do  i  =  1,  ngauss
   do  j  =  1,  ngauss 
 !  options for computing the potential 
