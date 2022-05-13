@@ -1,11 +1,11 @@
-! Copyright © 2021, UChicago Argonne, LLC, OPEN SOURCE LICENSE
+! Copyright © 2022, UChicago Argonne, LLC, OPEN SOURCE LICENSE
 ! See (root dir/)LICENSE.TXT 
 
 !  PGAS-FMO Proxy Application 
 !  Written by Graham D. Fletcher, Computational Science Division, 
 !  Argonne National Laboratory 
 
-!  Initial version (0.0) 
+!  Improved version (0.1) 
 !  Models 
 !  - Fragments are He atoms
 !  - The fragment basis is a contracted s-type GTO (used uncontracted) 
@@ -52,7 +52,7 @@
  use       pgasfmo_params 
  use       pgasfmo_info  
  implicit  none 
- integer   nfrag,ngauss,myfrag,ifrag,jfrag,nfrag_me, i,j,k,l 
+ integer   nfrag,ngauss,myfrag,ifrag,jfrag,kfrag,nfrag_me, i,j,k,l 
  real(8),  allocatable ::  xpnt( : )
  real(8),  allocatable ::  coef( : )
  real(8),  allocatable ::  geom( : , : )
@@ -143,9 +143,11 @@
 !  Main loops over fragments, compute the e-e potential 
  do ifrag = 1, nfrag_me 
  myfrag = ifrag + pgas_map( myrank ) - 1 
-!  This plain loop creates a communication bottleneck where all processors 
-!  are accessing the same fragment density at the same time.
- do jfrag = 1, nfrag   
+!  The offset, below, prevents processors accessing the same fragment 
+!  density at the same time, thus avoiding a communication bottleneck 
+ do kfrag = 1, nfrag   
+ jfrag = kfrag + myrank 
+ if ( jfrag > nfrag ) jfrag = jfrag - nfrag 
 
 !  compute the inter-fragment separation 
 !  we would compute and store the fragment centers-of-mass, above 
@@ -155,15 +157,18 @@
        +       ( geom( 3, jfrag ) - geom( 3, myfrag ) )**2  )
 
 !  begin compute kernel 
-  do  i  =  1,  ngauss
-  do  j  =  1,  ngauss 
 !  options for computing the potential 
   if ( rsep > rlong ) then    
 !  first, the point-charge approximation (eq.13 of [2])
+   do  i  =  1,  ngauss
+   do  j  =  1,  ngauss 
    fock( i, j, ifrag ) = fock( i, j, ifrag ) + mullpop*ptch( myfrag,jfrag, i,j, xpnt, geom )   
+   end do  ;  end do     
   else  if ( rsep > rmedium ) then    
 !  intermediate, coulomb approximation (eq.12 of [2])
    call pgasfmo_get( jfrag, ngauss**2, dens )  
+   do  i  =  1,  ngauss
+   do  j  =  1,  ngauss 
    do  k  =  1,  ngauss
 !  make (density * overlap)_kk for jfrag 
    sum = 0.0d0  
@@ -172,15 +177,18 @@
    end do
    fock( i, j, ifrag ) = fock( i, j, ifrag ) + sum*eri( myfrag,jfrag, i,j,k,k, xpnt, geom )   
    end do  
+   end do  ;  end do     
   else                        
 !  full/explicit calculation (2nd term in curly brackets, RHS, eq.5 of [1])
    call pgasfmo_get( jfrag, ngauss**2, dens )  
+   do  i  =  1,  ngauss
+   do  j  =  1,  ngauss 
    do  k  =  1,  ngauss
    do  l  =  1,  ngauss 
    fock( i, j, ifrag ) = fock( i, j, ifrag ) + dens( k, l )*eri( myfrag,jfrag, i,j,k,l, xpnt, geom ) 
    end do  ;  end do  
+   end do  ;  end do     
   end if  
-  end do  ;  end do     ! fock matrix elements
 ! end of compute kernel 
 
  end do  ! all fragments (monomers)  
