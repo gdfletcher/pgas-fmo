@@ -5,7 +5,7 @@
 !  Written by Graham D. Fletcher, Computational Science Division, 
 !  Argonne National Laboratory 
 
-!  Improved version (0.1) 
+!  Improved version (0.2) 
 !  Models 
 !  - Fragments are He atoms
 !  - The fragment basis is a contracted s-type GTO (used uncontracted) 
